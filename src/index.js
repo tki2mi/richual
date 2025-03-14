@@ -6,15 +6,21 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+// Add electron-reload
+require('electron-reload')(__dirname);
+
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 640,
+    height: 480,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
+
+  // Disable resizing
+  mainWindow.resizable = false;
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
